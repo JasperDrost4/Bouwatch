@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BouWatch Orders{% endblock %}
+{% block body %} 
+    <h1>RMA orders</h1>
+    {% if orders %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order date</th>
+                    <th>Customer</th>
+                    <th>Handler by</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders%}
+                    <tr>
+                       <td>{{order}}</td>
+                       <td>{{order}}</td>
+                       <td>{{order}}</td>
+                       <td>{{order}}</td>
+                       <td>{{order}}</td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p>No orders present</p>
+    {% endif %}
+{% endblock %}
+
+
