@@ -2,34 +2,35 @@
 
 {% block title %} BouWatch Parts{% endblock %}
 {% block body %} 
-    <h1>Parts</h1>
-    {% if orders %}
-        <table>
+    <h1 class='mt-5'>Parts</h1>
+    {% if parts %}
+        <table class="table table-striped mt-5">
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Order date</th>
-                    <th>Customer</th>
-                    <th>Handler by</th>
-                    <th>Status</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
-                {% for order in orders%}
+                {% for part in parts%}
                     <tr>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td> 
+                        <td>{{part.id}}</td>
+                        <td>{{part.name}}</td>
+                        <td>{{part.price}}</td>
+                        <td><a href="/parts/remove/{{ part.id }}" class="btn btn-danger">Remove</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
+        
+    
     {% else %}
-        <p>No orders present</p>
+        <p class='mt-5 text-danger'>No Parts present</p>
     {% endif %}
+    <a href="/part/new" class="btn btn-primary">Create new part</a>
 {% endblock %}
 
 

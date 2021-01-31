@@ -2,34 +2,44 @@
 
 {% block title %} BouWatch Equipment{% endblock %}
 {% block body %} 
-    <h1>Equipment</h1>
-    {% if orders %}
-        <table>
-            <thead>
+    <h1 class='mt-5'>Equipment</h1>
+    {% if equipment %}
+        <table class="table table-striped mt-5">
+            <thead >
                 <tr>
-                    <th>Order ID</th>
-                    <th>Order date</th>
-                    <th>Customer</th>
-                    <th>Handler by</th>
+                    <th>Type</th>
+                    <th>Model</th>
+                    <th>Production date</th>
+                    <th>Revision</th>
+                    <th>Serial Number</th>
                     <th>Status</th>
+                    <th>Logs</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for order in orders%}
-                    <tr>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td> 
+            <tbody >
+                {% for equipmentitem in equipment%}
+                    <tr >
+                       <td >{{equipmentitem.type}}</td>
+                       <td >{{equipmentitem.model}}</td>
+                       <td >date</td>
+                       <td >{{equipmentitem.revision}}</td>
+                       <td >{{equipmentitem.serialnumber}}</td>
+                       <td >{{equipmentitem.statusstatus}}</td> 
+                       <td><a href="/equipment/{{ equipmentitem.id }}" class="btn btn-dark">Show Logs</a></td>
+                       <td><a href="/equipment/remove/{{ equipmentitem.id }}" class="btn btn-danger">Remove</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
     {% else %}
-        <p>No orders present</p>
+        <p class='mt-5 text-danger'>No equipment present</p>
     {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}
 
 

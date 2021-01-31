@@ -19,11 +19,6 @@ class RMAOrderRule
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=RMAOrder::class, inversedBy="RmaOrderRules")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $rma_order_id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Parts::class)
@@ -37,30 +32,19 @@ class RMAOrderRule
     private $price;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Equipment::class)
+     * @ORM\ManyToOne(targetEntity=Equipment::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $Equipment_id;
 
-    public function __construct()
-    {
-        $this->Equipment_id = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity=RMAOrder::class, inversedBy="RMAOrderRules")
+     */
+    private $RMAOrderID;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRmaOrderId(): ?RMAOrder
-    {
-        return $this->rma_order_id;
-    }
-
-    public function setRmaOrderId(?RMAOrder $rma_order_id): self
-    {
-        $this->rma_order_id = $rma_order_id;
-
-        return $this;
     }
 
     public function getPartId(): ?Parts
@@ -87,27 +71,28 @@ class RMAOrderRule
         return $this;
     }
 
-    /**
-     * @return Collection|Equipment[]
-     */
-    public function getEquipmentId(): Collection
+    public function getEquipmentId(): ?Equipment
     {
         return $this->Equipment_id;
     }
 
-    public function addEquipmentId(Equipment $equipmentId): self
+    public function setEquipmentId(?Equipment $Equipment_id): self
     {
-        if (!$this->Equipment_id->contains($equipmentId)) {
-            $this->Equipment_id[] = $equipmentId;
-        }
+        $this->Equipment_id = $Equipment_id;
 
         return $this;
     }
 
-    public function removeEquipmentId(Equipment $equipmentId): self
+    public function getRMAOrderID(): ?RMAOrder
     {
-        $this->Equipment_id->removeElement($equipmentId);
+        return $this->RMAOrderID;
+    }
+
+    public function setRMAOrderID(?RMAOrder $RMAOrderID): self
+    {
+        $this->RMAOrderID = $RMAOrderID;
 
         return $this;
     }
+
 }

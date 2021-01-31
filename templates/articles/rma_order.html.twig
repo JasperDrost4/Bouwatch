@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    RMA orders
+{% endblock %}
+
+{% block body %}
+
+ <h1 class='mt-5'>RMA orders</h1>
+
+{% if rma_orders %}
+    <table class="table table-striped mt-5">
+        <thead >
+            <tr>
+                <th>Customer</th>
+                <th>Handled by</th>
+                <th>Status</th>
+                <th>Remove</th>
+                <th>Add</th>
+            </tr>
+        </thead>
+        <tbody >
+            {% for order in rma_orders%}
+                <tr >
+                    <td >{{order.getCustomer()}}</td>
+                    <td >{{order.getHandledBy()}}</td>
+                    <td >{{order.getStatus()}}</td>
+                    <td><a href="/rmaorders/remove/{{ order.id }}" class="btn btn-danger">Remove</a></td>
+                    <td><a href="/rmaorders/addrules/{{ order.id }}" class="btn btn-dark">See/Add Rules</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class='mt-5 text-danger'>No Orders present</p>
+{% endif %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

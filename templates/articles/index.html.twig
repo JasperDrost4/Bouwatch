@@ -1,35 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} BouWatch Orders{% endblock %}
+{% block title %} BouWatch assignment{% endblock %}
 {% block body %} 
-    <h1>RMA orders</h1>
-    {% if orders %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Order date</th>
-                    <th>Customer</th>
-                    <th>Handler by</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for order in orders%}
-                    <tr>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td> 
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-    {% else %}
-        <p>No orders present</p>
-    {% endif %}
+    <h1 class='mt-5'>BouWatch assignment</h1>
+    <h2 class='mt-5'>Readme</h2>
+    <p>Deze applicatie biedt de mogelijkheid om RMA orders in te zien en aan te maken.
+    </p>
+    <p>
+    Voordat de RMA orders gemaakt kunnen worden, moeten er eerst een aantal andere componenten aangemaakt worden. 
+    Te beginnen bij Parts. Navigeer naar ‘/parts’ om deze aan te maken.
+    </p><p>
+    Zodra de parts zijn aangemaakt, navigeer dan naar ‘/equipment’ om de benodigde equipments aan te maken. 
+    </p><p>
+    Nu kunnen de ‘rules’ worden aangemaakt waaruit een RMA Order bestaat. Navigeer naar ‘/rmaorderrules’ om deze aan te maken. 
+    Kies hier uit een ‘Part’, ‘Equipment’, en geef de prijs op.
+    </p><p>
+    Een RMA order bestaat uit meerdere RMA Order rules. 
+    Maak eerst een order aan, en voeg daarna de vooraf gedefinieerde Order rules toe.</p>
 {% endblock %}
 
 

@@ -2,9 +2,9 @@
 
 {% block title %}Production Log{% endblock %}
 {% block body %} 
-    <h1>Production Log</h1>
+    <h1 class='mt-5'>Production Log</h1>
     {% if orders %}
-        <table>
+        <table class="table table-striped mt-5">
             <thead>
                 <tr>
                     <th>Order ID</th>
@@ -28,7 +28,7 @@
         </table>
 
     {% else %}
-        <p>No orders present</p>
+        <p class='mt-5 text-danger'> No orders present</p>
     {% endif %}
 {% endblock %}
 

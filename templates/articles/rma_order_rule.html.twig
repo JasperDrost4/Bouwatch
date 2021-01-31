@@ -1,35 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RMA order rules{% endblock %}
+{% block title %} Order Rules{% endblock %}
 {% block body %} 
-    <h1>RMA order rules</h1>
-    {% if orders %}
-        <table>
-            <thead>
+    <h1 class='mt-5'>Order Rules</h1>
+    {% if order_rules %}
+        <table class="table table-striped mt-5">
+            <thead >
                 <tr>
-                    <th>Order ID</th>
-                    <th>Order date</th>
-                    <th>Customer</th>
-                    <th>Handler by</th>
-                    <th>Status</th>
+                    <th>ID</th>
+                    <th>Part</th>
+                    <th>Equipment</th>
+                    <th>Price</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for order in orders%}
-                    <tr>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td>
-                       <td>{{order}}</td> 
+            <tbody >
+                {% for order_rule in order_rules%}
+                    <tr >
+                        <th>{{order_rule.getId()}}</th>
+                        <td >{{order_rule.getPartId().getName()}}</td>
+                        <td >{{order_rule.getEquipmentId().getType()}}</td>
+                        <td >{{order_rule.getPrice}}</td>
+                        <td><a href="/rmaorderrules/remove/{{ order_rule.id }}" class="btn btn-danger">Remove</a></td>
+                    
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
     {% else %}
-        <p>No orders present</p>
+        <p class='mt-5 text-danger'>No Order Rules present</p>
     {% endif %}
+ {{ form_start(form) }}
+ {{ form_widget(form) }}
+ {{ form_end(form) }}
 {% endblock %}
 
 

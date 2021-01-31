@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{equipment.type }}</h1>
+{% endblock %}
+
+{% block body %}
+
+ <h1 class='mt-5'>Production logs for equipment: {{ equipment.type }}</h1>
+ <p>{{ equipment.model }}</p>
+ <hr>
+
+{% if logs %}
+    <table class="table table-striped mt-5">
+        <thead >
+            <tr>
+                <th>Log</th>
+                <th>Successfully produced</th>
+                <th>Mac address</th>
+                <th>mac</th>
+            </tr>
+        </thead>
+        <tbody >
+            {% for log in logs%}
+                <tr >
+                    <td >{{log.getLog()}}</td>
+                    <td >
+                        {% if log.getSuccessfullProduced() %} 
+                            yes
+                        {% else %}
+                            no
+                        {% endif %}
+                    </td>
+                    <td >{{log.getMacAdress()}}</td>
+                    <td >{{log.getProductionLocation()}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class='mt-5 text-danger'>No Logs present</p>
+{% endif %}
+
+ {{ form_start(form) }}
+ {{ form_widget(form) }}
+ {{ form_end(form) }}
+
+ <a href="/equipment">Go Back</a>
+{% endblock %}

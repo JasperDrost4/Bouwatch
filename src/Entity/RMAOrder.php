@@ -40,15 +40,16 @@ class RMAOrder
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity=RMAOrderRule::class, mappedBy="rma_order_id")
+     * @ORM\OneToMany(targetEntity=RMAOrderRule::class, mappedBy="RMAOrderID")
      */
-    private $RmaOrderRules;
+    private $RMAOrderRules;
+
 
   
 
     public function __construct()
     {
-        $this->RmaOrderRules = new ArrayCollection();
+        $this->RMAOrderRules = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,32 +108,32 @@ class RMAOrder
     /**
      * @return Collection|RMAOrderRule[]
      */
-    public function getRmaOrderRules(): Collection
+    public function getRMAOrderRules(): Collection
     {
-        return $this->RmaOrderRules;
+        return $this->RMAOrderRules;
     }
 
-    public function addRmaOrderRule(RMAOrderRule $rmaOrderRule): self
+    public function addRMAOrderRule(RMAOrderRule $rMAOrderRule): self
     {
-        if (!$this->RmaOrderRules->contains($rmaOrderRule)) {
-            $this->RmaOrderRules[] = $rmaOrderRule;
-            $rmaOrderRule->setRmaOrderId($this);
+        if (!$this->RMAOrderRules->contains($rMAOrderRule)) {
+            $this->RMAOrderRules[] = $rMAOrderRule;
+            $rMAOrderRule->setRMAOrderID($this);
         }
 
         return $this;
     }
 
-    public function removeRmaOrderRule(RMAOrderRule $rmaOrderRule): self
+    public function removeRMAOrderRule(RMAOrderRule $rMAOrderRule): self
     {
-        if ($this->RmaOrderRules->removeElement($rmaOrderRule)) {
+        if ($this->RMAOrderRules->removeElement($rMAOrderRule)) {
             // set the owning side to null (unless already changed)
-            if ($rmaOrderRule->getRmaOrderId() === $this) {
-                $rmaOrderRule->setRmaOrderId(null);
+            if ($rMAOrderRule->getRMAOrderID() === $this) {
+                $rMAOrderRule->setRMAOrderID(null);
             }
         }
 
         return $this;
     }
 
-    
+   
 }

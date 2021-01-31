@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Order Rules to order{% endblock %}
+{% block body %} 
+    <h1 class='mt-5'>Add Order Rules to order {{order.Id}}</h1>
+
+     <h3 class='mt-5'>All Order rules</h3>
+    {% if order_rules %}
+        <table class="table table-striped mt-5">
+            <thead >
+                <tr>
+                    <th>ID</th>
+                    <th>Part</th>
+                    <th>Equipment</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for rule in order_rules %}
+                    <tr >
+                        <th>{{rule.getId()}}</th>
+                        <td >{{rule.getPartId().getName()}}</td>
+                        <td >{{rule.getEquipmentId().getType()}}</td>
+                        <td >{{rule.getPrice}}</td>
+                        <td><a href="/rmaorderrules/{{order.id}}/add/{{ rule.id }}" class="btn btn-dark">Add to order</a></td>
+                    
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p class='mt-5 text-danger'>No Order Rules present</p>
+    {% endif %}
+
+    <h3 class='mt-5'>Added Order rules</h3>
+    {% if present_order_rules %}
+        <table class="table table-striped mt-5">
+            <thead >
+                <tr>
+                    <th>ID</th>
+                    <th>Part</th>
+                    <th>Equipment</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for rule in present_order_rules %}
+                    <tr >
+                        <th>{{rule.getId()}}</th>
+                        <td >{{rule.getPartId().getName()}}</td>
+                        <td >{{rule.getEquipmentId().getType()}}</td>
+                        <td >{{rule.getPrice}}</td>
+                        <td><a href="/rmaorderrules/remove/{{ rule.id }}" class="btn btn-danger">Remove</a></td>
+                    
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p class='mt-5 text-danger'>No Order Rules present</p>
+    {% endif %}
+   
+{% endblock %}
+
+
