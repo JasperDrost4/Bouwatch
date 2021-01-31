@@ -38,7 +38,7 @@ class RMAOrderRule
     private $Equipment_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=RMAOrder::class, inversedBy="RMAOrderRules")
+     * @ORM\ManyToOne(targetEntity=RMAOrder::class, inversedBy="RMAOrderRules", )
      */
     private $RMAOrderID;
 

@@ -97,7 +97,14 @@
         public function delete(Request $request, $id) {
             $order = $this->getDoctrine()->getRepository(RMAOrder::class)->find($id);
 
+            $orderRules = $order->getRMAOrderRules();
+
             $entityManager = $this->getDoctrine()->getManager();
+            foreach($orderRules as $rule){
+                $rule->setRMAOrderID(null);
+                $entityManager->flush();
+            }
+            
             
             $entityManager->remove($order);
             $entityManager->flush();
